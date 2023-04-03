@@ -1,0 +1,33 @@
+
+.heading-title{
+    font-size: 55px;
+    text-align: center;
+    font-family: 'Sans-serif';
+    color: var(--color-primary-blue);
+    text-transform: bold;
+}
+
+/* .image-box{
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 90rem;
+}
+
+.background{
+    width: 100vw;
+    height: 70vh;
+    opacity: 0.5;
+}
+
+.right-panel-wrapper{
+    position: absolute;
+    display: flex;
+    flex-direction: justify-content;
+    margin-top: -9px;
+}
+
+.form-container{
+    font-family: 'Roboto', sans-serif;
+    width: 600px; 
+    margin: 24px auto; 
+} */
