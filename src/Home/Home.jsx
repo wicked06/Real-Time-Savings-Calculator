@@ -171,7 +171,7 @@ const HomeCalculator = () => {
 <div class="container-fluid">
                <div class="row ">
                      <div class="col-2">
-                     <label >Salary</label>
+                     <label >Personal Fee</label>
                      <input type="text" id="salary" className="form-control"/>
                      
 
@@ -188,14 +188,14 @@ const HomeCalculator = () => {
                            <h1>x</h1>
                      </div>
                      <div class="col-2">
-                           <label >Team Size</label>
+                           <label >Number of Resources </label>
                            <input type="text" id="team" className="form-control"/>
                      </div>
                      <div class="col-1">
                            <h1>=</h1>
                      </div>
                      <div class="col-2">
-                     <label >Your Cost</label>
+                     <label >Your Cost with Personiv</label>
                            <input type="text" id="cost" className="form-control"/>
                      </div>
                </div>
