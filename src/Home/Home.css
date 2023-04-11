@@ -1,33 +1,242 @@
+.container-fluid
+{
+    background-color: #E8EEF1;
+    height: 953px;
+}
 
 .heading-title{
-    font-size: 55px;
+    font-size: 65px;
     text-align: center;
     font-family: 'Sans-serif';
     color: var(--color-primary-blue);
     text-transform: bold;
 }
 
-/* .image-box{
+.select-wrap
+{
     display: flex;
-    justify-content: flex-start;
-    padding-right: 90rem;
+    justify-content: flex-end;
+    margin: 50px;
+    margin-top: 8%;
+
 }
 
-.background{
-    width: 100vw;
-    height: 70vh;
-    opacity: 0.5;
+.select
+{
+    
+    color: #002E52;
+    border-radius: 3px;
+    background-color: #B2B2B2;
+    height: 35px;
+    font-weight: 600;
+}
+.jobtitle
+{
+    
+    color: #002E52;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 15px;
+
+}
+.name
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #002E52;
 }
 
-.right-panel-wrapper{
-    position: absolute;
+input
+{
+    background-color: #B2B2B2;
+    color: #002E52;
+    border-radius: 3px;
+    height: 35px;
+    border: none;
+    font-weight: 600;
+   
+}
+
+.addition-sign
+{
+    margin:20px;
+    font-weight: bold;
+    font-size: 25px;
+    color: #002E52;
+
+}
+
+
+.burden1
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #002E52;
+    margin-left:205px;
+    position: relative;
+   
+}
+
+.tm
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #002E52;
+    margin-left:115px;
+    position: relative;
+}
+.multiply-sign
+{
+    margin:20px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #002E52;
+}
+
+.equal-size
+{
+    margin:20px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #002E52;
+}
+.ycost
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #002E52;
+    margin-left:175px;
+    position: relative;
+}
+
+.gfee
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #002E52;
+    margin-top:20px;
+    position: relative;
+}
+
+.burden2
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #002E52;
+    margin-left:180px;
+    position: relative;
+   
+}
+
+.nr
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #002E52;
+    margin-left:115px;
+    position: relative;
+}
+.your-cost-with-geco
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #002E52;
+    margin-left:85px;
+    position: relative;
+}
+.content
+{
     display: flex;
-    flex-direction: justify-content;
-    margin-top: -9px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
 }
 
-.form-container{
-    font-family: 'Roboto', sans-serif;
-    width: 600px; 
-    margin: 24px auto; 
+
+
+.note
+{
+    margin-top: 40px;
+    margin-bottom: 70px;
+    margin-left: 10%;
+   
+}   
+ .note-content
+ {
+    color: #002E52;
+    font-size: 15px;
+ }
+.results
+{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+
+.total
+{
+    margin-right: 500px;
+    font-size: 70px;
+    font-weight: 600;
+    color: #002E52;
+}
+.percent
+{
+    font-size: 70px;
+    font-weight: 600;
+    color: #002E52;
+}
+/* .title
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 } */
+.bottom1
+{
+    margin-left: 23%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #002E52;
+
+}
+.bottom2
+{
+    margin-left: 560px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #002E52;
+
+}
+.form
+{
+    
+    margin-left: 20%;
+    
+
+
+}
+.background
+{
+    margin-top: 30%;
+    margin-left: 30%;
+}
+
+.update-button
+{
+    margin-top: 70px;
+    height: 50px;
+    width: 150px;
+    margin-left: 50%;
+    font-weight: bold;
+    background-color: #002E52;
+    color: #E8EEF1;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.second-layer
+{
+   margin-top: 30px;
+}

@@ -1,242 +1,304 @@
 import React from 'react';
-import Background from '../assets/background.svg';
 import './Home.css';
-const HomeCalculator = () => {
+import $ from 'jquery';
+import Background from '../assets/side.svg';
+
+function HomeCalculator() {
+
+   //Added JQUERY Function
+   $(function (){
+      var calcSalary = $('#calc-salary'); //Salary
+      var calcBurden = $('#calc-burden'); //Employee Burden
+      var calcSize = $('#calc-size') ;    //Team Size
+      var calcCost = $('#calc-cost');     //Cost
+
+      var calcGecoFee = $('#calc-geco-fee');        //GECO Fee
+      var calcGecoBurden = $('#calc-geco-burden');  //GECO Burden
+      var calcGecoSize = $('#calc-geco-size');      //GECO Size
+      var calcGecoCost = $('#calc-geco-cost');      //GECO Cost
+      
+      var calcSavings = $('#calc-savings');              //Savings
+      var calcPercentage = $('#calc-savings-percentage') //Percentage
+     
+
+      function addCommas(num){
+          var num_parts = num.toString().split(".");
+          num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          return num_parts.join(".");
+      }
+
+      function removeCommas(num){
+         var num = num.replace(/\,/g,'');
+         return num;
+      }
+
+      function fnCalculate(){
+         var calcCost = (parseInt( removeCommas($('#calc-salary').val()) ) + parseInt( removeCommas($('#calc-burden').val()) )) * parseInt( removeCommas($('#calc-size').val()) );
+         var calcGecoCost = (parseInt( removeCommas($('#calc-geco-fee').val()) ) + parseInt( removeCommas($('#calc-geco-burden').val()) )) * parseInt( removeCommas($('#calc-geco-size').val()) );
+           
+         //Get the value of cost
+         $('#calc-cost').val( addCommas(calcCost) );
+         $('#calc-geco-cost').val( addCommas(calcGecoCost) );
+        
+         //Get the value of savings
+         $('#calc-savings .value').html( addCommas(calcCost - calcGecoCost) );
+
+         //Get the value of percentage based on the salary
+         if( removeCommas($('#calc-salary').val()) > 0){
+            calcPercentage = 100 - 100 * (calcGecoCost / calcCost);
+            $('#calc-savings-percentage .value').html( calcPercentage.toFixed(2));
+         } else {
+            $('#calc-savings-percentage .value').html('0');
+         }
+      }
+      
+      //Navigate the select option of the job title
+      $('#calc-job-title').on('change', function() {
+          $('#calc')
+      })
+
+
+
+
+    })
+
+
     return(
         <>
-           {/* <div className="heading-box">
-              <p className="heading-title">Real Time Savings Calculator</p>
-           </div>
+        <div class="container-fluid ">
+  <div class="row">     
+    <div class="col-3">
+    <img src={Background} alt='bg-img' class="background"></img>
+    </div>
 
-           <div className="home-container">
-               <div className="left-panel-wrapper">
-                  <div className="image-box">
-                    <img src={Background} alt='bg-img' className="background"></img>
+
+{/* SECOND COLUMN */}
+    <div class="col-9">
+
+    <form id="calc-personiv-form" data-hs-cf-bound="true">
+    <div class="select-wrap">
+                      <label class="jobtitle">Job Title :</label> <br />
+                      <select class="select" id="calc-job-title" name="calc-job-title">
+                         <option name="calc-select" data-salary="0" data-fee="0" disabled selected>Select Role</option>
+                         <option name="calc-java-developer" value="java-dev" data-salary="40000" data-fee="34000">Java Developer</option>
+                         <option name="calc-mobile-developer" value="mobile-dev" data-salary="45000" data-fee="30000">Mobile Developer</option>
+                         <option name="calc-react-developer" value="react-dev" data-salary="30000" data-fee="30000">React JS Developer</option>
+                         <option name="calc-web-developer" value="web-dev" data-salary="25000" data-fee="15000">Web Developer</option>
+                         <option name="calc-soft-eng" value="soft-eng" data-salary="50000" data-fee="30000">Software Engineer</option>
+                         <option name="calc-sap-consultant" value="sap-consultant" data-salary="35000" data-fee="20000">SAP Consultant</option>
+                         <option name="calc-it-support" value="it-support" data-salary="20000" data-fee="10000">IT Support</option>
+                         <option name="calc-data-analyst" value="data-analyst" data-salary="20000" data-fee="15000">Data Analyst</option>
+                      </select>
                   </div>
-               </div>
+                  <div class="form">
+                  
+
+                        <label for="calc-salary" class="name">Salary</label> 
+                        <label for="calc-burden" class="burden1" >Employee Burden</label> 
+                        <label for="calc-burden" class="tm" >Team Size</label> 
+                        <label for="calc-burden" class="ycost" >Your Cost</label> 
 
 
-               <div className="right-panel-wrapper">
-                 <div className="dropdown-job">
-                     <div className="title">Job Title</div>
-                     <select name="Job Title" id="job">
-                         <option value="Java Developer">Java Developer</option>
-                         <option value="App Developer">App Developer</option>
-                         <option value="SAP Consultant">SAP Consultant</option>
-                     </select>
-                 </div>
-                   <div className="form-container">
-                      <form action="#">
-                          <div className="form-group">
-                             <div className="title">Salary</div>
-                             <input type="text" value="20000" className="salary" />
-                          </div>
+                        <br />
+                       
+                       <input type="text" id="calc-salary" name="calc-salary" />
 
-                          <div className="form-group">
-                             <div className="title">Employee Burden</div>
-                             <input type="text" value="20000" className="employee-burden" />
-                          </div>
-
-                          <div className="form-group">
-                             <div className="title">Team Size</div>
-                             <input type="text" value="20000" className="team-size" />
-                          </div>
-
-                          <div className="form-group">
-                             <div className="title">Your Cost</div>
-                             <input type="text" value="20000" className="cost" />
-                          </div>
-                      </form>
-                   </div>
+                        <span class="addition-sign">
+                        +
+                        </span>
 
 
-                   <div className="form-container">
-                      <form action="#">
-                          <div className="form-group">
-                             <div className="title">GECO Fee</div>
-                             <input type="text" value="20000" className="fee" />
-                          </div>
 
-                          <div className="form-group">
-                             <div className="title">Employee Burden</div>
-                             <input type="text" value="20000" className="employee-burden" />
-                          </div>
+                        <input type="text" id="calc-burden" name="calc-burden" />
 
-                          <div className="form-group">
-                             <div className="title">Number of Resources</div>
-                             <input type="text" value="20000" className="resources" />
-                          </div>
+                        <span class="multiply-sign">
+                        x
+                        </span>
 
-                          <div className="form-group">
-                             <div className="title">Your Cost with GECO</div>
-                             <input type="text" value="20000" className="geco-cost" />
-                          </div>
-                      </form>
-                   </div>
+                        <input type="text" id="calc-size" name="calc-size" value="1" maxlength="3"/>
 
-                   <div className="button-box">
-                      <button type="submit">Calculate</button>
-                   </div>
+                        <span class="equal-size">
+                        =
+                        </span>
 
-                   <div className="calculator-box-result">
-                       <h1>Your Saving</h1>
-                       <h1>Percentage Cost Savings</h1>
-                   </div>
-               </div>
+                        <input type="text" id="calc-cost" name="calc-cost" readonly />
 
+                        <div className="second-layer">
 
-           </div> */}
+                        <label for="calc-geco-fee" class="gfee">GECO Fee</label>
+                        <label for="calc-geco-burden" class="burden2">Employee Burden</label>
+                        <label for="calc-geco-size" class="nr">Number of Resources</label>
+                        <label for="calc-geco-cost" class="your-cost-with-geco">Your Cost with GECO</label>
 
+                        <br />
 
-{/* Cris UI */}
+                        <input type="text" id="calc-geco-fee" name="calc-geco-fee" readonly />
 
-{/* START */}
-   <div className="container-fluid">
-      <div className="text-center">
-         <p className="heading-title">Real Time Savings Calculator</p>
-      </div>
+                        <span class="addition-sign">
+                        +
+                        </span>
 
+                        <input type="text" id="calc-geco-size" name="calc-geco-size" value="1" />
 
-{/* start of first column */}
-         <div class="row g-0">
-         <div class="col-6 col-md-4">
-         <img src={Background} alt='bg-img' className="background"></img>
-         </div>
-{/* end of first column */}
+                        <span class="multiply-sign">
+                        x
+                        </span>
 
+                        <input type="text" id="calc-geco-size" name="calc-geco-size" value="1" />
 
-{/* start of second column */}
-         <div class="col-sm-6 col-md-8">
-{/* start of select */}
-               <div class="d-flex flex-row-reverse">
-                     <div class="p-2">
-                     <div class="container ">
-                     <div class="row align-items-start">
-                           <div class="col-4">
-                           <label> Role </label>
-                           </div>
-                           <div class="col-8">
-                              <select class="form-select" aria-label="Default select example">
-                              <option selected disabled>Select Job</option>
-                              <option value="1">Java Developer</option>
-                              <option value="2">App Developer</option>
-                              <option value="3">SAP Consultant</option>
-                              </select>
-                           </div>
-                           
-                     </div>
-                     </div>
-                           
+                        <span class="equal-size">
+                        =
+                        </span>
+                        <input type="text" id="calc-geco-cost" name="calc-geco-cost" readonly />
 
-                          
-                     </div>
-               </div>
-{/* end of select */}
+                       </div>
+                    
+                       
 
-{/* start of first row */}
-               <div class="container-fluid">
-               <div class="row ">
-                     <div class="col-2">
-                     <label >Salary</label>
-                     <input type="text" id="salary" className="form-control"/>
                      
+                    
+                  </div>
+                  
+                  <button type="submit" value="Update Totals" class="update-button">Calculate</button>
 
-                           
+    </form>
+                        
+    <div class="note">
+                     <label class="note-content">
+                        "*Employee Burden is the average estimate of indirect labor-related spend including benefits, perks, and payroll costs.
+                          We estimate this at 30%. If you cost differs, fill it out in the box above."
+                     </label>
                      </div>
-                     <div class="col-1">
-                           <h1>+</h1>
-                     </div>
-                     <div class="col-2">
-                           <label>Employee Burden</label>
-                           <input type="text" id="burden" className="form-control"/>
-                     </div>
-                     <div class="col-1">
-                           <h1>x</h1>
-                     </div>
-                     <div class="col-2">
-                           <label >Team Size</label>
-                           <input type="text" id="team" className="form-control"/>
-                     </div>
-                     <div class="col-1">
-                           <h1>=</h1>
-                     </div>
-                     <div class="col-2">
-                     <label >Your Cost</label>
-                           <input type="text" id="cost" className="form-control"/>
-                     </div>
-               </div>
-               </div>
-{/* end of first row */}
-{/* start of second row */}
-<div class="container-fluid">
-               <div class="row ">
-                     <div class="col-2">
-                     <label >Personal Fee</label>
-                     <input type="text" id="salary" className="form-control"/>
-                     
 
-                           
-                     </div>
-                     <div class="col-1">
-                           <h1>+</h1>
-                     </div>
-                     <div class="col-2">
-                           <label>Employee Burden</label>
-                           <input type="text" id="burden" className="form-control"/>
-                     </div>
-                     <div class="col-1">
-                           <h1>x</h1>
-                     </div>
-                     <div class="col-2">
-                           <label >Number of Resources </label>
-                           <input type="text" id="team" className="form-control"/>
-                     </div>
-                     <div class="col-1">
-                           <h1>=</h1>
-                     </div>
-                     <div class="col-2">
-                     <label >Your Cost with Personiv</label>
-                           <input type="text" id="cost" className="form-control"/>
-                     </div>
-               </div>
-               </div>
-{/* end of second layer */}
-                     <div class="d-flex justify-content-center">
-                        <button class="compute">Compute</button>
-                     </div>
-                     <div class="container px-4 text-center">
+                       <div className="results">
+                       <label class = "total"> $43,862</label>
+                       <label class="percent"> 57.07 %</label>
+                       
+                       
+
+                       
+                       </div>
+
+                       <div className="title">
 
 
+                       <label class="bottom1"> Your Savings </label>
+                       
+                        <label class="bottom2"> Percentage Cost Savings </label>
+                       </div>
+                        
 
-  <div class="row gx-5">
-    <div class="col">
-     <div class="p-3">
-         <h1>10,000</h1>
-         <h4>Your Saving</h4>
-     </div>
+    
     </div>
-    <div class="col">
-      <div class="p-3">
-         <h1>30.5%</h1>
-         <h4>Percentage Cost Savings</h4>
-      </div>
-    </div>
+
+    
+    
+
+    
+
+{/* End */}
   </div>
 </div>
 
+{/*             
+              <form id="calc-personiv-form" data-hs-cf-bound="true">
+                  <div class="select-wrap">
+                      <label>Job Title</label>
+                      <select id="calc-job-title" name="calc-job-title">
+                         <option name="calc-select" data-salary="0" data-fee="0" disabled selected>Select Role</option>
+                         <option name="calc-java-developer" value="java-dev" data-salary="40000" data-fee="34000">Java Developer</option>
+                         <option name="calc-mobile-developer" value="mobile-dev" data-salary="45000" data-fee="30000">Mobile Developer</option>
+                         <option name="calc-react-developer" value="react-dev" data-salary="30000" data-fee="30000">React JS Developer</option>
+                         <option name="calc-web-developer" value="web-dev" data-salary="25000" data-fee="15000">Web Developer</option>
+                         <option name="calc-soft-eng" value="soft-eng" data-salary="50000" data-fee="30000">Software Engineer</option>
+                         <option name="calc-sap-consultant" value="sap-consultant" data-salary="35000" data-fee="20000">SAP Consultant</option>
+                         <option name="calc-it-support" value="it-support" data-salary="20000" data-fee="10000">IT Support</option>
+                         <option name="calc-data-analyst" value="data-analyst" data-salary="20000" data-fee="15000">Data Analyst</option>
+                      </select>
+                  </div>
+        
+         
+                        <label for="calc-salary">Salary</label>
+                        <input type="text" id="calc-salary" name="calc-salary" />
+                
+                     <span class="addition-sign">
+                         +
+                     </span>
+                    
+                        <label for="calc-burden">Employee Burden</label>
+                        <input type="text" id="calc-burden" name="calc-burden" />
+                   
+                     <span class="multiply-sign">
+                        *
+                     </span>
+                     
+                        <label for="calc-size">Team Size</label>
+                        <input type="text" id="calc-size" name="calc-size" value="1" maxlength="3"/>
+                    
+                     <span class="equal-size">
+                        =
+                     </span>
+                     
+                         <label for="calc-cost">Your Cost</label>
+                         <input type="text" id="calc-cost" name="calc-cost" readonly />
+                     
+                 
+             
+                   
+                        <label for="calc-geco-fee">GECO Fee</label> 1
+                        <input type="text" id="calc-geco-fee" name="calc-geco-fee" readonly />
+                   
+                     <span class="addition-sign">
+                        +
+                     </span>
+                    
+                        <label for="calc-geco-burden">Employee Burden</label>
+                        <input type="text" id="calc-geco-burden" name="calc-geco-burden" value="0" readonly />
+                    
+                     <span class="multiply-sign">
+                        *
+                     </span>
+                     
+                        <label for="calc-geco-size">Number of Resources</label>
+                        <input type="text" id="calc-geco-size" name="calc-geco-size" value="1" />
+                     
+                     <span class="equals-sign">
+                        =
+                     </span>
+                     
+                        <label for="calc-geco-cost">Your Cost with GECO</label>
+                        <input type="text" id="calc-geco-cost" name="calc-geco-cost" readonly />
+                     
+                  
+                  <div class="update-wrap">
+                     <input type="submit" value="Update Totals" class="update-button" />
+                  </div>
+                  <div class="note">
+                     <span>
+                        "*Employee Burden is the average estimate of indirect labor-related spend including benefits, perks, and payroll costs.
+                          We estimate this at 30%. If you cost differs, fill it out in the box above."
+                     </span>
+                  </div>
+                  <div class="totals-wrap">
+                     <div class="total-wrap">
+                        <span id="calc-savings">
+                           $
+                           <span class="value">43,862</span>
+                        </span>
+                        " Your Savings "
+                     </div>
+                     <div class="total-wrap">
+                        <span id="calc-savings-percentage">
+                           <span class="value">57.07</span>
+                           %
 
-</div>
-{/* end of second column */}
-
-              
-         </div>
-
-
-
-
-   </div>
-{/* End */}
-
+                        </span>
+                        " Percentage Cost Savings "
+                     </div>
+                  </div>
+              </form>
+           </div> */}
+        {/* End */}
 
 
         </>
